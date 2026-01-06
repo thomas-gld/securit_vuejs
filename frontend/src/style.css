@@ -1,0 +1,176 @@
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+h3 {
+    color: gold;
+    margin-bottom: 15px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 18, 37);
+}
+
+label {
+    display: flex;
+}
+
+input {
+    display: flex;
+    border-color: gold;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    font-size: large;
+}
+
+button {
+    display: flex;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+    background-color: goldenrod;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:large;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+a {
+    display: flex;
+    padding-top: 10px;
+    color: rgb(184, 139, 27);
+    font-style: italic;
+}
+
+p {
+    display: flex;
+    color: goldenrod;
+}
+
+img {
+    display: flex;
+    padding-top: 20px;
+    width: 200;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    color: goldenrod;
+    margin-bottom: 3px;
+}
+
+.title_page {
+    display: flex;
+    color: goldenrod;
+    text-align: center;
+    margin-bottom: 30px;
+    
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-center {
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}    
+
+
+.error {
+    color: red;
+    
+}
+
+.go_home {
+    color: aqua;
+}
+
+h1:hover {
+    cursor: pointer;
+}
+
+table {
+    display: flex;
+    flex-direction: row;
+    font-size: x-large;
+    margin-top: 30px;
+}
+
+th {
+    padding-left: 60px;
+    font-weight: bolder;
+    padding-bottom: 30px;
+}
+
+
+select {
+    display: flex;
+    border-color: gold;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    font-size: large;
+    text-align: center;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+.add_company {
+    margin-left: 15px;
+    margin-top: 13px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 75%;
+    padding-bottom: 10px;
+    
+}
+
+nav a {
+    display: flex;
+    flex-direction: column;   
+    align-items: center;
+    text-decoration: none;
+    font-style: italic;
+    color: rgb(184, 139, 27);
+}
+
+nav a span {
+    margin-top: 5px;
+    font-size: medium;
+}
