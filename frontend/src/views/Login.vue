@@ -1,34 +1,38 @@
 <script setup>
     import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter()
     const formData = ref({})
-    let error_message = ref("")
+    const isError = ref(false)
 
     async function submitCredentials() {
-      if (formData.value.email === "lalala") {
-         error_message.value = "AAAAAAAAHHHHH"
-      }
       const res = await fetch('/check_credentials', {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
-
          },
          body: JSON.stringify(formData.value),
       })
       console.log(res)
+      
+      if (res.status === 403) {
+         isError.value = true
+      }
+
+      if (res.status === 200) {
+         isError.value = false
+         router.push('/login_verify')
+         
+      }
+
     }
+
 </script>
 
 
 
 <template>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>SECURIT</title>
-</head>
 <body>
    <div>
       <a href="/">
@@ -53,7 +57,7 @@
          <label for="password"><input v-model="formData.password" name="password" class="pwd" type="password" placeholder="🔒"></label>
    </div>
     <div>
-      <p class="error">{{ error_message }}</p>
+      <p class="error" v-if="isError">Email ou mot de passe incorrect</p>
     </div>
    <div>
       
@@ -71,7 +75,7 @@
       <a href="/forgotten_password">Mot de passe oublié</a>
    </div>
 </body>
-</html>
+
 </template>
 
 
