@@ -9,7 +9,7 @@
     const code = ref("")
 
     async function submitCode() {
-        const res = await fetch('/login_verify_code', {
+        const res = await fetch('/register_verify_code', {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@
 
       if (res.status === 403) {
         error.value = "Code expiré"
-        router.push('/')
+        router.push('/register')
         
       }
       
@@ -32,7 +32,7 @@
         attempts.value ++
         if (attempts.value === 3) {
             error.value = "Trois tentatives incorrectes"
-            router.push('/')
+            router.push('/register')
         }
         else {
         error.value = "Code incorrect"
@@ -41,14 +41,13 @@
 
       if (res.status === 200) {
         error.value = ""
-        router.push("/visit_list")
+        router.push('/set_name_password')
       }
     }
-
 </script>
 
 <template>
-    <body>
+<body>
    <div>
       <a href="/">
       <img class="logo" src="../assets/images/logo.webp" width="175" alt="">
@@ -56,30 +55,26 @@
    </div>
    <div>
       <h2 class="title_page">
-        Verifiez votre boite mail et tapez le code de confirmation
+        Pour finaliser la création de votre compte, vérifiez votre boite mail et tapez le code de confirmation      
       </h2>
     </div>
-    
     <div>
         Code de confirmation
     </div>
     <div>
-        <label for="code"><input v-model="code" name="code" type="text" placeholder="ex : 12345"></label>
-        
-    </div>
+        <label for="code"><input v-model="code" name="code" type="text" placeholder="ex 12345"></label> 
+      </div>
     <div>
     <p class="error">
-         {{ error }}
+        {{ error }}
       </p>
       </div>
-      
     <div>
-            <button @click="submitCode()">
-                Continuer
-            </button>
+        <button @click="submitCode">
+            Continuer
+        </button>
+        </div>
             
-        
-    </div>
-   
-</body>
+        </body>
+
 </template>

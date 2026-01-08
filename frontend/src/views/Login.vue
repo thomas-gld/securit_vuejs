@@ -1,10 +1,11 @@
 <script setup>
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
+    import { email } from '../../globalState.mjs';
+    import { error } from '../../globalState.mjs';
 
     const router = useRouter()
-    const formData = ref({})
-    const isError = ref(false)
+    const password = ref("")
 
     async function submitCredentials() {
       const res = await fetch('/check_credentials', {
@@ -12,16 +13,19 @@
          headers: {
             'Content-Type': 'application/json',
          },
-         body: JSON.stringify(formData.value),
+         body: JSON.stringify({
+            email: email.value,
+            password: password.value
+         }),
       })
       console.log(res)
       
       if (res.status === 403) {
-         isError.value = true
+         error.value = "Email ou mot de passe incorrect"
       }
 
       if (res.status === 200) {
-         isError.value = false
+         error.value = ""
          router.push('/login_verify')
          
       }
@@ -48,20 +52,20 @@
       Email : 
    </div>
    <div>
-         <label for="email"><input v-model="formData.email" id="email" name="email" class="email" type="text" placeholder="📧"></label>
+         <label for="email"><input v-model="email" id="email" name="email" class="email" type="text" placeholder="📧"></label>
    </div>
    <div>
       Mot de passe :
    </div>
    <div>
-         <label for="password"><input v-model="formData.password" name="password" class="pwd" type="password" placeholder="🔒"></label>
+         <label for="password"><input v-model="password" name="password" class="pwd" type="password" placeholder="🔒"></label>
    </div>
     <div>
-      <p class="error" v-if="isError">Email ou mot de passe incorrect</p>
+      <p class="error">{{ error }}</p>
     </div>
    <div>
       
-      <button @click="submitCredentials()" type="submit">
+      <button @click="submitCredentials()">
          Connexion
          
       </button>

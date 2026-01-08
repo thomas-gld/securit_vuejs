@@ -14,6 +14,23 @@ export default defineConfig({
             target: 'http://localhost:3001',
             changeOrigin: true,
          },
+         '/login_verify_code': {
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+         },
+         '/check_register': {
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+         },
+         '/register_verify_code': {
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+         },
+         '/register_new_user': {
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+         },
+         
          '^/api/.*': {
             target: 'http://localhost:3001',
             changeOrigin: true,
