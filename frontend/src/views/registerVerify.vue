@@ -1,11 +1,10 @@
 <script setup>
     import { ref } from 'vue';
-    import { useRouter } from 'vue-router';
+    import router from '../router';
     import { email } from '../../globalState.mjs';
     import { attempts } from '../../globalState.mjs';
     import { error } from '../../globalState.mjs';
 
-    const router = useRouter()
     const code = ref("")
 
     async function submitCode() {
@@ -58,11 +57,12 @@
         Pour finaliser la création de votre compte, vérifiez votre boite mail et tapez le code de confirmation      
       </h2>
     </div>
+    <form @submit.prevent="submitCode">
     <div>
         Code de confirmation
     </div>
     <div>
-        <label for="code"><input v-model="code" name="code" type="text" placeholder="ex 12345"></label> 
+        <label for="code"><input v-model="code" name="code" type="text" placeholder="ex 12345"></label>
       </div>
     <div>
     <p class="error">
@@ -70,10 +70,11 @@
       </p>
       </div>
     <div>
-        <button @click="submitCode">
+        <button type="submit">
             Continuer
         </button>
         </div>
+    </form>
             
         </body>
 

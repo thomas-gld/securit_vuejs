@@ -1,10 +1,9 @@
 <script setup>
     import { ref } from 'vue';
-    import { useRouter } from 'vue-router';
+    import router from '../router';
     import { email } from '../../globalState.mjs';
     import { error } from '../../globalState.mjs';
 
-    const router = useRouter()
     const role = ref("")
     const userName = ref("")
     const password = ref("")
@@ -64,6 +63,7 @@
          Choisissez un nom d'utilisateur et un mot de passe
       </h2>
    </div>
+   <form @submit.prevent="submitNewUser">
    <div>
       Nom d'utilisateur
    </div>
@@ -100,9 +100,10 @@
       </p>
       </div>
 
-        <button @click="submitNewUser">
+        <button type="submit">
             Créer
         </button>
+   </form>
         
 
 </body>

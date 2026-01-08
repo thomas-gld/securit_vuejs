@@ -1,4 +1,24 @@
-<script setup></script>
+<script setup>
+    import { ref, onMounted } from 'vue';
+    import router from '../router';
+
+    const visits = ref([])
+
+    async function getVisits() {
+        const response = await fetch('/get_visits', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        visits.value = await response.json()
+        console.log(visits)
+    }
+
+    onMounted(() => {
+        getVisits()
+    })
+</script>
 
 <template>
     <body>
@@ -6,7 +26,7 @@
         <div class="header-left">
             <a href="/visit_list" class="go_home">
             <h1 style="font-style: normal; font-weight: bolder;">
-                <%=user_name%>
+                
             </h1>
             </a>
         </div>
@@ -30,30 +50,12 @@
     </form>
    </div>
    <div>
-    <table>
-        <tr>
-            <th>
-                Date
-            </th>
-            <th>
-                Entreprise
-            </th>
-            <th>
-                
-            </th>
-        </tr>
-        <tr>
-            <td style="text-align: center;">
-                27/11/2024
-            </td>
-            <td style="text-align: center;">
-                EC1
-            </td>
-            <td style="text-align: center;">
-                ✏️
-            </td>
-        </tr>
-    </table>
+    <p v-for="visit in visits">
+        <span>{{ visit.id }}</span>
+        <span>{{ visit.date }}</span>
+        <span>{{ visit.report }}</span>
+    </p>
+    
    </div>
    <nav>
         <a href="/visit_list">
@@ -72,4 +74,10 @@
 </body>
 
 </template>
+
+<style scoped>
+    span {
+        margin-left: 20px;
+    }
+</style>
 

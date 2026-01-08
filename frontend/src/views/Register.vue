@@ -1,10 +1,8 @@
 <script setup>
    import { ref } from 'vue';
-   import { useRouter } from 'vue-router';
+   import router from '../router';
    import { email } from '../../globalState.mjs';
    import { error } from '../../globalState.mjs';
-
-   const router = useRouter()
 
    async function submitEmail() {
       const res = await fetch('/check_register', {
@@ -41,6 +39,7 @@
         Creation de compte
     </h2>
    </div>
+   <form @submit.prevent="submitEmail">
    <div>
         Email
    </div>
@@ -53,10 +52,11 @@
       </p>
       </div>
    <div>
-      <button @click="submitEmail">
+      <button type="submit">
          Continuer
       </button>
     </div>
+   </form>
     <div>
       <a href="/">Connexion</a>
    </div>

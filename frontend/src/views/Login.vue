@@ -1,10 +1,9 @@
 <script setup>
     import { ref } from 'vue';
-    import { useRouter } from 'vue-router';
+    import router from '../router';
     import { email } from '../../globalState.mjs';
     import { error } from '../../globalState.mjs';
-
-    const router = useRouter()
+  
     const password = ref("")
 
     async function submitCredentials() {
@@ -48,10 +47,12 @@
          Connexion
       </h2>
    </div>
+   <form @submit.prevent="submitCredentials">
    <div>
-      Email : 
+      Email :
    </div>
    <div>
+
          <label for="email"><input v-model="email" id="email" name="email" class="email" type="text" placeholder="📧"></label>
    </div>
    <div>
@@ -64,13 +65,14 @@
       <p class="error">{{ error }}</p>
     </div>
    <div>
-      
-      <button @click="submitCredentials()">
+
+      <button type="submit">
          Connexion
-         
+
       </button>
-      
+
    </div>
+   </form>
    
    <div>
       <a href="/register">Créer un compte</a>

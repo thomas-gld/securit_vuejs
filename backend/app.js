@@ -20,6 +20,21 @@ app.use(cookieParser())
 const db = await prisma.User.findMany()
 console.log(db)
 
+
+app.get('/get_visits', async (req, res) => {
+   const visits = await prisma.Visite.findMany({
+           include: {
+              company: true,
+              inspector: true
+           }
+   })
+   res.json(visits)
+})
+          
+        
+
+
+
 // --------------------------------------------------------------------------------------------------------------
 // ------ LOGIN PATH ------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------
